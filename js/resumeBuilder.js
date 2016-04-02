@@ -4,32 +4,32 @@
 var works = {
 	"jobs": [
 		{
-			"employer": "School of Engineering and Information Technology (SEIT), Federation University Australia",
+			"employer": "Federation University Australia",
 			"title": "Research Fellow",
 			"location": "Churchill, Victoria, Australia",
 			"dates": "2014 - to date",
-			"description": "Research and development in the area of information and coding theory and its application to ‘3D video compression"
+			"description": "Currently, I am working as a researcher and developer in the School of Engineering and Information Technology (SEIT). My research interests are in the area of information and coding theory and its application to ‘3D video compression."
 		},
 		{
-			"employer": "Faculty of Information Technology (FIT), Monash University",
+			"employer": "Monash University",
 			"title": "Research Fellow",
 			"location": "Churchill, Victoria, Australia",
 			"dates": "2012 - 2014",
-			"description": "Research and development in the area of information and coding theory and its application in ‘distributed video coding’ and ‘privacy and security’"
+			"description": "I worked in Faculty of Information Technology (FIT), as a Research Fellow. While at Monash University, I conducted research and development in the area of information and coding theory and its application in ‘distributed video coding’ and ‘privacy and security.’"
 		},
 		{
-			"employer": "Department of Electrical and Electronic Engineering (EEE), University of Melbourne",
+			"employer": "University of Melbourne",
 			"title": "Research Fellow",
 			"location": "Melbourne, Victoria, Australia",
 			"dates": "2009 - 2011",
-			"description": "Research and development in the area of information and coding theory and its application in ‘distributed source coding’"
+			"description": "In University of Melbourne, I was with the Department of Electrical and Electronic Engineering (EEE) as a Research Fellow. In University of Melbourne, my major research area was information and coding theory and its application in ‘distributed source coding.’"
 		},
 		{
-			"employer": "Department of Computer Science and Engineering (CSE), Bangladesh University of Engineering and Technology (BUET)",
+			"employer": "Bangladesh University of Engineering and Technology (BUET)",
 			"title": "Lecturer",
 			"location": "Dhaka, Bangladesh",
 			"dates": "2001 - 2004",
-			"description": "Conduct the courses Professionalism in Computing, Discrete Mathematics, and Digital Logic Design"
+			"description": "As a Lecturer in the Department of Computer Science and Engineering (CSE), I conducted the courses Professionalism in Computing, Discrete Mathematics, and Digital Logic Design."
 		}
 	]
 };
@@ -131,3 +131,17 @@ var education = {
 		}
 	]
 };
+
+for(var job in works.jobs){
+	$("#workExperience").append(HTMLworkStart);
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", works.jobs[job].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", works.jobs[job].title);
+	var formattedEmployerTitle = formattedEmployer + formattedTitle;
+	$(".work-entry:last").append(formattedEmployerTitle);
+	var formattedDate = HTMLworkDates.replace("%data%", works.jobs[job].dates);
+	$(".work-entry:last").append(formattedDate);
+	var formattedLocation = HTMLworkLocation.replace("%data%", works.jobs[job].location);
+	$(".work-entry:last").append(formattedLocation);
+	var formattedDescription = HTMLworkDescription.replace("%data%", works.jobs[job].description);
+	$(".work-entry:last").append(formattedDescription);
+}
