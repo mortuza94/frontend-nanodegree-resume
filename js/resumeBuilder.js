@@ -1,7 +1,7 @@
 /*
 	WORK Object
 */
-var works = {
+var work = {
 	"jobs": [
 		{
 			"employer": "Federation University Australia",
@@ -33,6 +33,22 @@ var works = {
 		}
 	]
 };
+work.display = function(){
+	for(var job in work.jobs){
+		$("#workExperience").append(HTMLworkStart);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		$(".work-entry:last").append(formattedEmployerTitle);
+		var formattedDate = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		$(".work-entry:last").append(formattedDate);
+		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+		$(".work-entry:last").append(formattedLocation);
+		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		$(".work-entry:last").append(formattedDescription);
+	}
+}
+work.display();
 /*
 	PROJECTS Object
 */
@@ -41,47 +57,95 @@ var projects = {
 		{
 			"title": "Multiview Video Coding using Cuboid Data Compression",
 			"dates": "2014 - to date",
-			"description": "Devise a theoretical framework for 3D block-based multiview video coding to efficiently exploit spatial, temporal, and disparity correlation",
+			"description": "Devise a theoretical framework for 3D block-based multiview video coding to efficiently exploit spatial, temporal, and disparity correlation.",
 			"images": ["./images/multiview.png"]
 		},
 		{
 			"title": "Ore-X Innovation Challenge",
 			"dates": "2015",
-			"description": "Design an image processing algorithm to extract salient features from images from gold mines and classify the materials according to their quality",
+			"description": "Design an image processing algorithm to extract salient features from images from gold mines and classify the materials according to their quality.",
 			"images": ["./images/Ore-X_grade_processing.jpg"]
 		},
 		{
 			"title": "Integrated patient information and in-home health monitoring system using smartphones and cloud services",
 			"dates": "2015 - 2016",
-			"description": "Design and develop an application in Android platform that supports acquisition of various physiological signals using portable and wearable bio-sensors",
-			"images": ["./images/Fig-PIS.png", "./images/PatientModuleU.png"]
+			"description": "Design and develop an application in Android platform that supports acquisition of various physiological signals using portable and wearable bio-sensors.",
+			"images": ["./images/FigPIS.png"]
 		},
 		{
 			"title": "Low complexity video coding for wireless multimedia sensor networks",
 			"dates": "2012 - 2013",
-			"description": "Research on the development of a low-complexity video coding architecture in distributed source coding paradigm",
-			"images": ["./images/Fig-PIS.png", "./images/videoCodingSensorNetwork.png"]
+			"description": "Research on the development of a low-complexity video coding architecture in distributed source coding paradigm.",
+			"images": ["./images/videoCodingSensorNetwork.png"]
 		}
 	]
 };
+projects.display = function(){
+	for(var curProject in projects.project){
+		$("#projects").append(HTMLprojectStart);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.project[curProject].title);
+		$(".project-entry:last").append(formattedTitle);
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.project[curProject].dates);
+		$(".project-entry:last").append(formattedDates);
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.project[curProject].description);
+		$(".project-entry:last").append(formattedDescription);
+		for(var currImg in projects.project[curProject].images)
+		{
+			var formattedImage = HTMLprojectImage.replace("%data%", projects.project[curProject].images[currImg]);
+			$(".project-entry:last").append(formattedImage);
+		}
+
+	}
+
+}
+projects.display();
 /*
 	BIO Object
 */
 var bio = {
 	"name": "Mortuza Ali",
-	"role": "Research Developer",
-	"welcomeMessage": "Hi, welcome to my hopepage. I am a researcher and developer working in Federation University Australia. My research interests are in the area of Information and Coding Theory, Data compression, Signal Processing, and Machine Learning. I am also passonate about software design, development, and analysis. I am proficient in both low-level programming (C, Assembly) and general purpose programming (C++, Java, Python, and MATLAB) languages",
+	"role": "Researcher | Software Developer",
+	"welcomeMessage": "Hi, welcome to my hopepage. I am a researcher and software developer. My research interests are in the area of Information and Coding Theory, Data compression, Signal Processing, and Machine Learning. I am also passonate about software design, development, and analysis. I am proficient in both low-level programming (C, Assembly) and general purpose programming (C++, Java, Python, and MATLAB) languages.",
 	"contacts": {
 					"email": "mortuza.ali@federation.edu.au",
 					"phone": "+61351226285",
 					"mobile": "+61431732078",
 					"github": "https://github.com/mortuza94",
 					"linkedin": "https://au.linkedin.com/in/mortuza-ali-65576077",
-					"location": "Melbourne, Victoria, Australia"
+					"location": "Melbourne, Australia"
 				},
 	"skills": ["Research and Analysis", "Algorihtmic design and analysis", "Software Development", "Web Development", "Scientific Writing"],
 	"pictureUrl": "./images/mortuza.jpg"
 };
+bio.display = function(){
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+	var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	var formattedPic = HTMLbioPic.replace("%data%", bio.pictureUrl);
+
+
+	$("#header").prepend(formattedRole);
+	$("#header").prepend(formattedName);
+
+	var formattedMobile = HTMLmobile.replace("%data%", bio["contacts"].mobile);
+	var formattedEmail = HTMLemail.replace("%data%", bio["contacts"].email);
+	var formattedGitHub = HTMLgithub.replace("%data%", bio["contacts"].github);
+/*	var formattedLinkedIn = HTMLlinkedin.replace("%data%", bio["contacts"].linkedin);*/
+	var formattedLocation = HTMLlocation.replace("%data%", bio["contacts"].location);
+
+	var contactPosStr = ["#topContacts", "#footerContacts"];
+	for(var conId in contactPosStr){
+		$(contactPosStr[conId]).append(formattedMobile);
+		$(contactPosStr[conId]).append(formattedEmail);
+		$(contactPosStr[conId]).append(formattedGitHub);
+/*		$(contactPosStr[conId]).append(formattedLinkedIn);*/
+		$(contactPosStr[conId]).append(formattedLocation);
+	}
+
+	$("#header").append(formattedPic);
+	$("#header").append(formattedMsg);
+}
+bio.display();
 /*
 	EDUCATION Object
 */
@@ -132,16 +196,4 @@ var education = {
 	]
 };
 
-for(var job in works.jobs){
-	$("#workExperience").append(HTMLworkStart);
-	var formattedEmployer = HTMLworkEmployer.replace("%data%", works.jobs[job].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%", works.jobs[job].title);
-	var formattedEmployerTitle = formattedEmployer + formattedTitle;
-	$(".work-entry:last").append(formattedEmployerTitle);
-	var formattedDate = HTMLworkDates.replace("%data%", works.jobs[job].dates);
-	$(".work-entry:last").append(formattedDate);
-	var formattedLocation = HTMLworkLocation.replace("%data%", works.jobs[job].location);
-	$(".work-entry:last").append(formattedLocation);
-	var formattedDescription = HTMLworkDescription.replace("%data%", works.jobs[job].description);
-	$(".work-entry:last").append(formattedDescription);
-}
+$("#mapDiv").append(googleMap);
