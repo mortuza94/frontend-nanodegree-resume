@@ -34,21 +34,22 @@ var work = {
 	]
 };
 work.display = function(){
-	for(var job in work.jobs){
+	work.jobs.forEach(function(job) {
 		$("#workExperience").append(HTMLworkStart);
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
 		var formattedEmployerTitle = formattedEmployer + formattedTitle;
 		$(".work-entry:last").append(formattedEmployerTitle);
-		var formattedDate = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		var formattedDate = HTMLworkDates.replace("%data%", job.dates);
 		$(".work-entry:last").append(formattedDate);
-		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+		var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
 		$(".work-entry:last").append(formattedLocation);
-		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
 		$(".work-entry:last").append(formattedDescription);
-	}
+	});
 }
 work.display();
+
 /*
 	PROJECTS Object
 */
