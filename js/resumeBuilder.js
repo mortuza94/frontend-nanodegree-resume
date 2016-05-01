@@ -82,22 +82,19 @@ var projects = {
 	]
 };
 projects.display = function(){
-	for(var curProject in projects.project){
+	projects.project.forEach(function(curProject){
 		$("#projects").append(HTMLprojectStart);
-		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.project[curProject].title);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", curProject.title);
 		$(".project-entry:last").append(formattedTitle);
-		var formattedDates = HTMLprojectDates.replace("%data%", projects.project[curProject].dates);
+		var formattedDates = HTMLprojectDates.replace("%data%", curProject.dates);
 		$(".project-entry:last").append(formattedDates);
-		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.project[curProject].description);
+		var formattedDescription = HTMLprojectDescription.replace("%data%", curProject.description);
 		$(".project-entry:last").append(formattedDescription);
-		for(var currImg in projects.project[curProject].images)
-		{
-			var formattedImage = HTMLprojectImage.replace("%data%", projects.project[curProject].images[currImg]);
+		curProject.images.forEach(function(currImg)	{
+			var formattedImage = HTMLprojectImage.replace("%data%", currImg);
 			$(".project-entry:last").append(formattedImage);
-		}
-
-	}
-
+		});
+	});
 }
 projects.display();
 
@@ -164,7 +161,7 @@ var education = {
 			"name": "Bangladesh University of Engineering and Technology",
 			"location": "Dhaka, Bangladesh",
 			"degree": "Bachelor of Science and Engineering (BscEng)",
-			"major": ["Computer Science and Engineering (CSE)"],
+			"majors": ["Computer Science and Engineering (CSE)"],
 			"dates": "1996 - 2001",
 			"url": "http://www.buet.ac.bd/"
 		}
@@ -196,5 +193,38 @@ var education = {
 		}
 	]
 };
+education.display = function() {
+	education.schools.forEach(function(curSchool){
+		$("#education").append(HTMLschoolStart);
+		var formattedSchoolName = HTMLschoolName.replace('%data%', curSchool.name);
+		$(".education-entry:last").append(formattedSchoolName);
+		var formattedSchoolDegree = HTMLschoolDegree.replace('%data%', curSchool.degree);
+		$(".education-entry:last").append(formattedSchoolDegree);
+		var formattedSchoolDates = HTMLschoolDates.replace('%data%', curSchool.dates);
+		$(".education-entry:last").append(formattedSchoolDates);
+		var formattedSchoolLocation = HTMLschoolLocation.replace('%data%', curSchool.location);
+		$(".education-entry:last").append(formattedSchoolLocation);
+		curSchool.majors.forEach(function(schoolMajor){
+			var formattedSchoolMajor = HTMLschoolMajor.replace('%data%', schoolMajor);
+			$(".education-entry:last").append(formattedSchoolMajor);
+		});
+	});
+
+	$("#education").append(HTMLonlineClasses);
+	education.onlineCourses.forEach(function(curCourse){
+		$("#education").append(HTMLschoolStart);
+		var formattedOnlinetitle = HTMLonlineTitle.replace('%data%', curCourse.title);
+		$(".education-entry:last").append(formattedOnlinetitle);
+		var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', curCourse.school);
+		$(".education-entry:last").append(formattedOnlineSchool);
+		var formattedOnlineDates = HTMLonlineDates.replace('%data%', curCourse.dates);
+		$(".education-entry:last").append(formattedOnlineDates);
+		var formattedURL = HTMLonlineURL.replace('%data%', curCourse.url);
+		$(".education-entry:last").append(formattedURL);
+	});
+
+}
+education.display();
+
 
 $("#mapDiv").append(googleMap);
