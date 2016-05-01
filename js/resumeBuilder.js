@@ -114,13 +114,13 @@ var bio = {
 					"location": "Melbourne, Australia"
 				},
 	"skills": ["Research and Analysis", "Algorihtmic design and analysis", "Software Development", "Web Development", "Scientific Writing"],
-	"pictureUrl": "./images/mortuza.jpg"
+	"biopic": "./images/mortuza.jpg"
 };
 bio.display = function(){
 	var formattedName = HTMLheaderName.replace("%data%", bio.name);
 	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 	var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-	var formattedPic = HTMLbioPic.replace("%data%", bio.pictureUrl);
+	var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
 
 
 	$("#header").prepend(formattedRole);
@@ -133,10 +133,10 @@ bio.display = function(){
 
 	var contactPosStr = ["#topContacts", "#footerContacts"];
 	contactPosStr.forEach(function(conId){
-		$(conId).append(formattedMobile);
-		$(conId).append(formattedEmail);
-		$(conId).append(formattedGitHub);
-		$(conId).append(formattedLocation);
+		$(conId).append(formattedMobile, formattedEmail, formattedGitHub, formattedLocation);
+		// $(conId).append(formattedEmail);
+		// $(conId).append(formattedGitHub);
+		// $(conId).append(formattedLocation);
 	});
 
 	$("#header").append(formattedPic);
@@ -170,25 +170,25 @@ var education = {
 		{
 			"title": "Front End Web Developer",
 			"school": "Udacity",
-			"dates": "2015",
+			"date": "2015",
 			"url": "https://www.udacity.com/"
 		},
 		{
 			"title": "Machine Leanring",
 			"school": "Coursera, Stanford University",
-			"dates": "2014",
+			"date": "2014",
 			"url": "https://www.coursera.org/learn/machine-learning"
 		},
 		{
 			"title": "Embedded Systems",
 			"school": "EdX, University of Texas, Austin",
-			"dates": "2014",
+			"date": "2014",
 			"url": "https://courses.edx.org/courses/UTAustinX/UT.6.01x/1T2014/info"
 		},
 		{
 			"title": "Data Mining with Weka",
 			"school": "University of Waikato",
-			"dates": "2014",
+			"date": "2014",
 			"url": "https://weka.waikato.ac.nz/dataminingwithweka/preview"
 		}
 	]
@@ -217,7 +217,7 @@ education.display = function() {
 		$(".education-entry:last").append(formattedOnlinetitle);
 		var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', curCourse.school);
 		$(".education-entry:last").append(formattedOnlineSchool);
-		var formattedOnlineDates = HTMLonlineDates.replace('%data%', curCourse.dates);
+		var formattedOnlineDates = HTMLonlineDates.replace('%data%', curCourse.date);
 		$(".education-entry:last").append(formattedOnlineDates);
 		var formattedURL = HTMLonlineURL.replace('%data%', curCourse.url);
 		$(".education-entry:last").append(formattedURL);
