@@ -100,13 +100,14 @@ projects.display = function(){
 
 }
 projects.display();
+
 /*
 	BIO Object
 */
 var bio = {
 	"name": "Mortuza Ali",
 	"role": "Researcher | Software Developer",
-	"welcomeMessage": "Hi, welcome to my hopepage. I am a researcher and software developer. My research interests are in the area of Information and Coding Theory, Data compression, Signal Processing, and Machine Learning. I am also passonate about software design, development, and analysis. I am proficient in both low-level programming (C, Assembly) and general purpose programming (C++, Java, Python, and MATLAB) languages.",
+	"welcomeMessage": "Hi, welcome to my homepage. I am a researcher and a software developer. I worked as a postdoctoral researcher in leading Australian universities which include University of Melbourne and Monash University, where I worked in three Australian Research Council (ARC) funded Discovery Projects. My research interests are in the area of Information and Coding Theory, Data compression, Signal Processing, and Machine Learning. An integral part of my research is to generate new ideas, build proof-of-concept prototypes, testing and analysis of the prototypes, and finally integration of the algorithms with existing reference software. With a PhD in Information Technology (IT) and Bachelor degree in Computer Science and Engineering (CSE), I am proficient in both low-level programming (C, Assembly) and general purpose programming (C++, Java, Python, and MATLAB) languages. I am also proficient in web application developments using state-of-the-art frameworks and languages.",
 	"contacts": {
 					"email": "mortuza.ali@federation.edu.au",
 					"phone": "+61351226285",
@@ -131,22 +132,21 @@ bio.display = function(){
 	var formattedMobile = HTMLmobile.replace("%data%", bio["contacts"].mobile);
 	var formattedEmail = HTMLemail.replace("%data%", bio["contacts"].email);
 	var formattedGitHub = HTMLgithub.replace("%data%", bio["contacts"].github);
-/*	var formattedLinkedIn = HTMLlinkedin.replace("%data%", bio["contacts"].linkedin);*/
 	var formattedLocation = HTMLlocation.replace("%data%", bio["contacts"].location);
 
 	var contactPosStr = ["#topContacts", "#footerContacts"];
-	for(var conId in contactPosStr){
-		$(contactPosStr[conId]).append(formattedMobile);
-		$(contactPosStr[conId]).append(formattedEmail);
-		$(contactPosStr[conId]).append(formattedGitHub);
-/*		$(contactPosStr[conId]).append(formattedLinkedIn);*/
-		$(contactPosStr[conId]).append(formattedLocation);
-	}
+	contactPosStr.forEach(function(conId){
+		$(conId).append(formattedMobile);
+		$(conId).append(formattedEmail);
+		$(conId).append(formattedGitHub);
+		$(conId).append(formattedLocation);
+	});
 
 	$("#header").append(formattedPic);
 	$("#header").append(formattedMsg);
 }
 bio.display();
+
 /*
 	EDUCATION Object
 */
